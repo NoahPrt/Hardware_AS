@@ -1,0 +1,11 @@
+id,version,name,type,manufacturer,price,rating,in_stock,tags,created_at,updated_at
+1000,1,RTX 3080,GRAPHICS_CARD,NVIDIA,699.99,5,1,"high-performance, gaming",2023-01-01 12:00:00,2023-01-01 12:00:00
+1001,1,Ryzen 9 5900X,PROCESSOR,AMD,549.99,5,1,"multi-core, high-speed",2023-01-02 12:00:00,2023-01-02 12:00:00
+1002,1,ROG STRIX B550-M,MOTHERBOARD,ASUS,189.99,4,1,"gaming, compact",2023-01-03 12:00:00,2023-01-03 12:00:00
+1003,1,Vengeance LPX 16GB,RAM,Corsair,79.99,5,1,"DDR4, high-speed",2023-01-04 12:00:00,2023-01-04 12:00:00
+1004,1,970 EVO Plus 1TB,SSD,Samsung,129.99,5,1,"fast, reliable",2023-01-05 12:00:00,2023-01-05 12:00:00
+1005,1,WD Blue 2TB,HDD,Western Digital,59.99,4,0,"storage, reliable",2023-01-06 12:00:00,2023-01-06 12:00:00
+1006,1,CX750M,POWER_SUPPLY,Corsair,89.99,4,0,"modular, efficient",2023-01-07 12:00:00,2023-01-07 12:00:00
+1007,1,NZXT H510,CASE,NZXT,69.99,5,0,"compact, stylish",2023-01-08 12:00:00,2023-01-08 12:00:00
+1008,1,Hyper 212 EVO,COOLER,Cooler Master,39.99,4,0,"efficient, quiet",2023-01-09 12:00:00,2023-01-09 12:00:00
+1009,1,Noctua NF-A12x25,FAN,Noctua,29.99,5,0,"quiet, high-performance",2023-01-10 12:00:00,2023-01-10 12:00:00

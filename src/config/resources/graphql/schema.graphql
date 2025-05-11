@@ -1,0 +1,105 @@
+# This file contains the GraphQL schema definition for the hardware management system.
+# It defines the types, queries, mutations, and inputs used in the GraphQL API.
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  hardwareMult(suchkriterien: SuchkriterienInput): [Hardware!]
+
+  hardware(id: ID!): Hardware
+}
+
+type Mutation {
+  create(input: HardwareInput!): CreatePayload
+
+  update(input: HardwareUpdateInput!): UpdatePayload
+
+  delete(id: ID!): Boolean
+
+  token(username: String!, password: String!): TokenResult
+  refresh(refresh_token: String!): TokenResult
+}
+
+type Abbildung {
+  beschriftung: String!
+  contentType: String
+}
+
+type Hardware {
+  id: Int!
+  version: Int!
+  name: String!
+  manufacturer: String!
+  rating: Int
+  type: Type
+  price: Float!
+  inStock: Boolean
+  tags: [String]
+}
+
+enum Type {
+  GRAPHICS_CARD
+  PROCESSOR
+  MOTHERBOARD
+  RAM
+  SSD
+  HDD
+  POWER_SUPPLY
+  CASE
+  COOLER
+  FAN
+}
+
+input SuchkriterienInput {
+  manufacturer: String
+  name: String
+  rating: Int
+  type: Type
+  inStock: Boolean
+  price: Float
+}
+
+input AbbildungInput {
+  beschriftung: String!
+  contentType: String!
+}
+
+input HardwareInput {
+  name: String
+  manufacturer: String
+  rating: Int
+  type: Type
+  price: Float
+  inStock: Boolean
+  tags: [String]
+  abbildungen: [AbbildungInput!]
+}
+
+type CreatePayload {
+  id: Int
+}
+
+input HardwareUpdateInput {
+  id: ID
+  version: Int
+  name: String
+  rating: Int
+  type: Type
+  manufacturer: String
+  price: Float
+  inStock: Boolean
+  tags: [String]
+}
+
+type UpdatePayload {
+  version: Int
+}
+
+type TokenResult {
+  access_token: String!
+  expires_in: Int!
+  refresh_token: String!
+  refresh_expires_in: Int!
+}

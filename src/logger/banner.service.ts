@@ -38,7 +38,7 @@ export class BannerService implements OnApplicationBootstrap {
      */
     onApplicationBootstrap() {
         const { host, nodeEnv, port } = nodeConfig;
-        figlet('HARDWARE M2025.1.0', (_, data) => console.info(data));
+        figlet('HARDWARE   M2025.1.0', (_, data) => console.info(data));
         // https://nodejs.org/api/process.html
         // "Template String" ab ES 2015
         this.#logger.info('Node: %s', process.version);

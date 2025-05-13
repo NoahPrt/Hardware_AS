@@ -124,7 +124,11 @@ export class HardwareReadService {
         // Ist jedes Suchkriterium auch eine Property von Buch oder "schlagwoerter"?
         let validKeys = true;
         keys.forEach((key) => {
-            if (!this.#hardwareProps.includes(key)) {
+            if (!this.#hardwareProps.includes(key)&&
+            key !== 'DDR4' &&
+            key !== 'gaming' &&
+            key !== 'high-speed' &&
+            key !== 'reliable') {
                 this.#logger.debug(
                     '#checkKeys: ungueltiges Suchkriterium "%s"',
                     key,

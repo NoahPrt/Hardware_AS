@@ -78,8 +78,7 @@ export class QueryBuilder {
 
     /**
      * Bücher asynchron suchen.
-     * @param suchkriterien JSON-Objekt mit Suchkriterien. Bei "titel" wird mit
-     * einem Teilstring gesucht, bei "rating" mit einem Mindestwert, bei "preis"
+     * @param suchkriterien JSON-Objekt mit Suchkriterien. Bei "rating" wird mit einem Mindestwert gesucht, bei "preis"
      * mit der Obergrenze.
      * @param pageable Maximale Anzahl an Datensätzen und Seitennummer.
      * @returns QueryBuilder
@@ -137,7 +136,7 @@ export class QueryBuilder {
         if (price !== undefined && typeof price === 'string') {
             const preisNumber = Number(price);
             queryBuilder = queryBuilder.where(
-                `${this.#hardwareAlias}.preis <= ${preisNumber}`,
+                `${this.#hardwareAlias}.price <= ${preisNumber}`,
             );
             useWhere = false;
         }

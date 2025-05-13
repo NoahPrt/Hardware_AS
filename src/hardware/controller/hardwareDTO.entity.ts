@@ -49,7 +49,7 @@ export class HardwareDtoWithoutRefs {
 
     @Transform(number2Decimal)
     @Validate(DecimalMin, [Decimal(0)], {
-        message: 'preis muss positiv sein.',
+        message: 'price value must be positive.',
     })
     @ApiProperty({example: 999.99, type: Number})
     readonly price!: Decimal;

@@ -125,11 +125,11 @@ FROM node:${NODE_VERSION}-bookworm-slim AS final
 # https://specs.opencontainers.org/image-spec/annotations
 # https://spdx.org/licenses
 # MAINTAINER ist deprecated https://docs.docker.com/engine/reference/builder/#maintainer-deprecated
-LABEL org.opencontainers.image.title="buch" \
-  org.opencontainers.image.description="Appserver buch mit Basis-Image Debian Bookworm" \
+LABEL org.opencontainers.image.title="hardware" \
+  org.opencontainers.image.description="Appserver hardware mit Basis-Image Debian Bookworm" \
   org.opencontainers.image.version="2025.4.1-bookworm" \
   org.opencontainers.image.licenses="GPL-3.0-or-later" \
-  org.opencontainers.image.authors="Juergen.Zimmermann@h-ka.de"
+  org.opencontainers.image.authors="np"
 
 RUN <<EOF
 set -eux

@@ -22,11 +22,11 @@
 # https://docs.docker.com/build/bake/reference
 
 target "default" {
-  tags = ["docker.io/juergenzimmermann/buch:2025.4.1-bookworm"]
+  tags = ["noahprt/hardware:2025.4.1-bookworm"]
   #dockerfile = "Dockerfile"
 }
 
 target "alpine" {
-  tags = ["docker.io/juergenzimmermann/buch:2025.4.1-alpine"]
+  tags = ["noahprt/hardware:2025.4.1-alpine"]
   dockerfile = "Dockerfile.alpine"
 }

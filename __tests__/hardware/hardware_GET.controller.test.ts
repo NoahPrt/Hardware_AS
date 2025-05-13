@@ -1,18 +1,3 @@
-// Copyright (C) 2016 - present Juergen Zimmermann, Hochschule Karlsruhe
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program. If not, see <https://www.gnu.org/licenses/>.
-
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import { HttpStatus } from '@nestjs/common';
 import axios, { type AxiosInstance, type AxiosResponse } from 'axios';
@@ -28,9 +13,6 @@ import {
 } from '../testserver.js';
 import { type ErrorResponse } from './error-response.js';
 
-// -----------------------------------------------------------------------------
-// T e s t d a t e n
-// -----------------------------------------------------------------------------
 const ratingMin = 3;
 const preisMax = 700;
 const schlagwortNichtVorhanden = 'JoeMama';
@@ -90,7 +72,6 @@ describe('GET /rest', () => {
         expect(headers['content-type']).toMatch(/json/iu);
         expect(data).toBeDefined();
 
-        // Jedes Buch hat einen Titel mit dem Teilstring 'a'
         data.content
             .map((hardware) => hardware.rating)
             .forEach((rating) =>
@@ -111,7 +92,6 @@ describe('GET /rest', () => {
         expect(headers['content-type']).toMatch(/json/iu);
         expect(data).toBeDefined();
 
-        // Jedes Buch hat einen Titel mit dem Teilstring 'a'
         data.content
             .map((hardware) => Decimal(hardware.price))
             .forEach((price) =>

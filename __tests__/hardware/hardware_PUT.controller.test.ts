@@ -13,9 +13,6 @@ import { tokenRest } from '../token.js';
 // eslint-disable-next-line import/no-internal-modules
 import { type HardwareDtoWithoutRefs } from '../../src/hardware/controller/hardwareDTO.entity';
 
-// -----------------------------------------------------------------------------
-// T e s t d a t e n
-// -----------------------------------------------------------------------------
 const updatedHardware: Omit<HardwareDtoWithoutRefs, 'price'> & {
     price: number;
 } = {

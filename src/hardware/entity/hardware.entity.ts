@@ -7,6 +7,22 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export type HardwareType = 'GRAPHICS_CARD' | 'PROCESSOR' | 'MOTHERBOARD' | 'RAM' | 'SSD' | 'HDD' | 'POWER_SUPPLY' | 'CASE' | 'COOLER' | 'FAN';
 
+/**
+ * Entity class for Hardware.
+ *
+ * @property {number} id - Unique ID of the hardware.
+ * @property {number} version - Version of the hardware.
+ * @property {string} name - Name of the hardware.
+ * @property {HardwareType} type - Type of the hardware.
+ * @property {string} manufacturer - Manufacturer of the hardware.
+ * @property {Decimal} price - Price of the hardware.
+ * @property {number} rating - Rating of the hardware (1-5).
+ * @property {boolean} inStock - Availability of the hardware.
+ * @property {string[]} tags - Tags for categorizing the hardware.
+ * @property {Abbildung[]} abbildungen - Images of the hardware.
+ * @property {Date} created - Creation date of the hardware.
+ * @property {Date} updated - Last modification date of the hardware.
+ */
 @Entity()
 export class Hardware {
 

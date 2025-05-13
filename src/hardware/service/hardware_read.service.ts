@@ -66,6 +66,13 @@ export class HardwareReadService {
         return hardware;
     }
 
+    /**
+     * Find hardware by search criteria.
+     * @param suchkriterien Search criteria
+     * @param pageable Pageable object
+     * @returns Slice of Hardware
+     * @throws NotFoundException, if no Hardware with the given search criteria is found
+     */
     async find(suchkriterien: Suchkriterien | undefined, pageable: Pageable): Promise<Slice<Hardware>> {
         this.#logger.debug('find: suchkriterien=%o', suchkriterien);
         this.#logger.debug('find: pageable=%o', pageable);

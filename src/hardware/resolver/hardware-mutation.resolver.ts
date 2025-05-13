@@ -1,18 +1,3 @@
-// Copyright (C) 2021 - present Juergen Zimmermann, Hochschule Karlsruhe
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program. If not, see <https://www.gnu.org/licenses/>.
-
 // eslint-disable-next-line max-classes-per-file
 import { UseFilters, UseGuards, UseInterceptors } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
@@ -27,16 +12,6 @@ import { HttpExceptionFilter } from './http-exception.filter.js';
 import { HardwareDTO } from '../controller/hardwareDTO.entity.js';
 import { HardwareWriteService } from '../service/hardware_write.service.js';
 import { Hardware } from '../entity/hardware.entity.js';
-
-// Authentifizierung und Autorisierung durch
-//  GraphQL Shield
-//      https://www.graphql-shield.com
-//      https://github.com/maticzav/graphql-shield
-//      https://github.com/nestjs/graphql/issues/92
-//      https://github.com/maticzav/graphql-shield/issues/213
-//  GraphQL AuthZ
-//      https://github.com/AstrumU/graphql-authz
-//      https://www.the-guild.dev/blog/graphql-authz
 
 export type CreatePayload = {
     readonly id: number;
@@ -54,6 +29,11 @@ export class HardwareUpdateDTO extends HardwareDTO {
     @Min(0)
     readonly version!: number;
 }
+
+/**
+ * GraphQL-Resolver for creating, updating, and deleting Hardware data.
+ * @see https://docs.nestjs.com/graphql/resolvers#resolvers
+ */
 @Resolver('Hardware')
 @UseGuards(AuthGuard)
 @UseFilters(HttpExceptionFilter)
@@ -152,32 +132,4 @@ export class HardwareMutationResolver {
             updated: new Date(),
         };
     }
-
-    // #errorMsgCreateBuch(err: CreateError) {
-    //     switch (err.type) {
-    //         case 'IsbnExists': {
-    //             return `Die ISBN ${err.isbn} existiert bereits`;
-    //         }
-    //         default: {
-    //             return 'Unbekannter Fehler';
-    //         }
-    //     }
-    // }
-
-    // #errorMsgUpdateBuch(err: UpdateError) {
-    //     switch (err.type) {
-    //         case 'BuchNotExists': {
-    //             return `Es gibt kein Buch mit der ID ${err.id}`;
-    //         }
-    //         case 'VersionInvalid': {
-    //             return `"${err.version}" ist keine gueltige Versionsnummer`;
-    //         }
-    //         case 'VersionOutdated': {
-    //             return `Die Versionsnummer "${err.version}" ist nicht mehr aktuell`;
-    //         }
-    //         default: {
-    //             return 'Unbekannter Fehler';
-    //         }
-    //     }
-    // }
 }

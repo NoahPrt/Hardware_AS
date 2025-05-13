@@ -1,20 +1,5 @@
-// Copyright (C) 2016 - present Juergen Zimmermann, Hochschule Karlsruhe
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program. If not, see <https://www.gnu.org/licenses/>.
-
 /**
- * Das Modul besteht aus der Klasse {@linkcode QueryBuilder}.
+ * Module consists of the class {@linkcode QueryBuilder}.
  * @packageDocumentation
  */
 
@@ -28,16 +13,16 @@ import { DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE } from './pageable.js';
 import { type Pageable } from './pageable.js';
 import { type Suchkriterien } from './suchkriterien.js';
 
-/** Typdefinitionen für die Suche mit der Hardware-ID. */
+/** Type definitions for searching with the hardware ID. */
 export type BuildIdParams = {
-    /** ID des gesuchten Hardwares. */
+    /** ID of the hardware being searched for. */
     readonly id: number;
-    /** Sollen die Abbildungen mitgeladen werden? */
+    /** Should the images be loaded as well? */
     readonly mitAbbildungen?: boolean;
 };
 /**
- * Die Klasse `QueryBuilder` implementiert das Lesen für Bücher und greift
- * mit _TypeORM_ auf eine relationale DB zu.
+ * The `QueryBuilder` class implements reading for hardware and accesses
+ * a relational database using _TypeORM_.
  */
 @Injectable()
 export class QueryBuilder {
@@ -58,8 +43,8 @@ export class QueryBuilder {
     }
 
     /**
-     * Hardware anhand dessen ID suchen.
-     * @param id ID der gesuchten Hardware
+     * Search for hardware by its ID.
+     * @param id ID of the hardware being searched for
      * @returns QueryBuilder
      */
     buildId({ id, mitAbbildungen = false }: BuildIdParams) {
@@ -77,14 +62,12 @@ export class QueryBuilder {
     }
 
     /**
-     * Bücher asynchron suchen.
-     * @param suchkriterien JSON-Objekt mit Suchkriterien. Bei "rating" wird mit einem Mindestwert gesucht, bei "preis"
-     * mit der Obergrenze.
-     * @param pageable Maximale Anzahl an Datensätzen und Seitennummer.
+     * Search for hardware asynchronously.
+     * @param suchkriterien JSON object with search criteria. For "rating", a minimum value is used, and for "price",
+     * an upper limit is applied.
+     * @param pageable Maximum number of records and page number.
      * @returns QueryBuilder
      */
-    // z.B. { titel: 'a', rating: 5, preis: 22.5, javascript: true }
-    // "rest properties" fuer anfaengliche WHERE-Klausel: ab ES 2018 https://github.com/tc39/proposal-object-rest-spread
     // eslint-disable-next-line max-lines-per-function, prettier/prettier, sonarjs/cognitive-complexity
     build(
         {
@@ -106,11 +89,6 @@ export class QueryBuilder {
         );
 
         let queryBuilder = this.#repo.createQueryBuilder(this.#hardwareAlias);
-
-        // z.B. { titel: 'a', rating: 5, javascript: true }
-        // "rest properties" fuer anfaengliche WHERE-Klausel: ab ES 2018 https://github.com/tc39/proposal-object-rest-spread
-        // type-coverage:ignore-next-line
-        // const { titel, javascript, typescript, ...otherProps } = suchkriterien;
 
         let useWhere = true;
 
@@ -141,7 +119,6 @@ export class QueryBuilder {
             useWhere = false;
         }
 
-        // Restliche Properties als Key-Value-Paare: Vergleiche auf Gleichheit
         Object.entries(restProps).forEach(([key, value]) => {
             const param: Record<string, any> = {};
             param[key] = value; // eslint-disable-line security/detect-object-injection

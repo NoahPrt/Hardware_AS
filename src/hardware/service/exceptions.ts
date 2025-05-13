@@ -18,13 +18,13 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
 /**
- * Das Modul besteht aus den Klassen für die Fehlerbehandlung bei der Verwaltung
- * von Büchern, z.B. beim DB-Zugriff.
+ * This module consists of classes for error handling in the management
+ * of hardware, e.g., during database access.
  * @packageDocumentation
  */
 
 /**
- * Exception-Klasse für eine bereits existierende ISBN-Nummer.
+ * Exception-Class for an existing Hardware name.
  */
 export class HardwareNameExistsException extends HttpException {
     readonly hardwareName: string | undefined;
@@ -39,7 +39,7 @@ export class HardwareNameExistsException extends HttpException {
 }
 
 /**
- * Exception-Klasse für eine ungültige Versionsnummer beim Ändern.
+ * Exception-Class for an invalid version number when updating hardware.
  */
 export class VersionInvalidException extends HttpException {
     readonly version: string | undefined;
@@ -54,7 +54,7 @@ export class VersionInvalidException extends HttpException {
 }
 
 /**
- * Exception-Klasse für eine veraltete Versionsnummer beim Ändern.
+ * Exception-Class for an outdated version number when updating hardware.
  */
 export class VersionOutdatedException extends HttpException {
     readonly version: number;

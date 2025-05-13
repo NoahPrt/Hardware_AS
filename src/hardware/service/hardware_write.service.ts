@@ -37,6 +37,12 @@ export class HardwareWriteService {
         this.#mailService = mailService;
     }
 
+    /**
+     * Create a new Hardware.
+     * @param hardware Hardware to be created
+     * @returns ID of the created Hardware
+     * @throws HardwareNameExistsException, if a Hardware with the same name already exists
+     */
     async create(hardware: Hardware) {
 
         this.#logger.debug('create: hardware=%o', hardware);
@@ -49,6 +55,15 @@ export class HardwareWriteService {
         return hardwareDb.id!;
     }
 
+    /**
+     * Update an existing Hardware.
+     * @param id ID of the Hardware to be updated
+     * @param hardware Hardware data to be updated
+     * @param version Version of the Hardware to be updated
+     * @returns Version of the updated Hardware
+     * @throws NotFoundException, if no Hardware with the given ID is found
+     * @throws VersionOutdatedException, if the provided version is outdated
+     */
     async update({ id, hardware, version }: UpdateParams) {
 
         this.#logger.debug(
@@ -78,6 +93,12 @@ export class HardwareWriteService {
         return updated.version!;
     }
 
+    /**
+     * Delete a Hardware.
+     * @param id ID of the Hardware to be deleted
+     * @returns true, if the Hardware was deleted successfully
+     * @throws NotFoundException, if no Hardware with the given ID is found
+     */
     async delete(id: number) {
 
         this.#logger.debug('delete: id=%d', id);

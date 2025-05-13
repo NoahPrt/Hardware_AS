@@ -18,7 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MailModule } from '../mail/mail.module.js';
 import { KeycloakModule } from '../security/keycloak/keycloak.module.js';
 import { entities } from './entity/entities.js';
-import { HardwareMutationResolver } from './resolver/buch-mutation.resolver.js';
+import { HardwareMutationResolver } from './resolver/hardware-mutation.resolver.js';
 import { HardwareQueryResolver } from './resolver/hardware_query.resolver.js';
 import { QueryBuilder } from './service/query-builder.js';
 import { HardwareGetController } from './controller/hardware_get.controller.js';
@@ -27,19 +27,19 @@ import { HardwareReadService } from './service/hardware_read.service.js';
 import { HardwareWriteService } from './service/hardware_write.service.js';
 
 /**
- * Das Modul besteht aus Controller- und Service-Klassen für die Verwaltung von
- * Bücher.
+ * The module consists of controller and service classes for managing
+ * hardware.
  * @packageDocumentation
  */
 
 /**
- * Die dekorierte Modul-Klasse mit Controller- und Service-Klassen sowie der
- * Funktionalität für TypeORM.
+ * The decorated module class with controller and service classes as well as
+ * functionality for TypeORM.
  */
 @Module({
     imports: [KeycloakModule, MailModule, TypeOrmModule.forFeature(entities)],
     controllers: [HardwareGetController, HardwareWriteController],
-    // Provider sind z.B. Service-Klassen fuer DI
+    // Provider are e.g. Service-Classes for DI
     providers: [
         HardwareReadService,
         HardwareWriteService,
@@ -47,7 +47,7 @@ import { HardwareWriteService } from './service/hardware_write.service.js';
         HardwareMutationResolver,
         QueryBuilder,
     ],
-    // Export der Provider fuer DI in anderen Modulen
+    // Export of Providers for DI in other modules
     exports: [HardwareReadService, HardwareWriteService],
 })
 export class HardwareModule {}

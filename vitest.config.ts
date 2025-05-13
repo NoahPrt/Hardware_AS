@@ -9,6 +9,10 @@ export default defineConfig({
     root: './',
     environment: 'node',
     testTimeout: 60_000,
+    isolate: false, 
+    sequence: {
+      concurrent: false,
+    },
   },
   plugins: [
     // This is required to build the test files with SWC

@@ -1,19 +1,4 @@
 /* eslint-disable max-lines */
-// Copyright (C) 2021 - present Juergen Zimmermann, Hochschule Karlsruhe
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program. If not, see <https://www.gnu.org/licenses/>.
-
 /**
  * Das Modul besteht aus der Controller-Klasse für Schreiben an der REST-Schnittstelle.
  * @packageDocumentation
@@ -78,20 +63,12 @@ export class HardwareWriteController {
     }
 
     /**
-     * Ein neues Buch wird asynchron angelegt. Das neu anzulegende Buch ist als
-     * JSON-Datensatz im Request-Objekt enthalten. Wenn es keine
-     * Verletzungen von Constraints gibt, wird der Statuscode `201` (`Created`)
-     * gesetzt und im Response-Header wird `Location` auf die URI so gesetzt,
-     * dass damit das neu angelegte Buch abgerufen werden kann.
+     * Create a new hardware entry. Transmitted using JSON data in the request body.
      *
-     * Falls Constraints verletzt sind, wird der Statuscode `400` (`Bad Request`)
-     * gesetzt und genauso auch wenn der Titel oder die ISBN-Nummer bereits
-     * existieren.
-     *
-     * @param buchDTO JSON-Daten für ein Buch im Request-Body.
-     * @param req: Request-Objekt von Express für den Location-Header.
-     * @param res Leeres Response-Objekt von Express.
-     * @returns Leeres Promise-Objekt.
+     * @param hardwareDTO JSON data for hardware in the request body.
+     * @param req Request object from Express for the Location header.
+     * @param res Empty response object from Express.
+     * @returns Empty Promise object.
      */
     @Post()
     @Roles({ roles: ['admin', 'user'] })
@@ -115,29 +92,13 @@ export class HardwareWriteController {
     }
 
     /**
-     * Ein vorhandenes Buch wird asynchron aktualisiert.
+     * An existing hardware entry is updated asynchronously.
      *
-     * Im Request-Objekt von Express muss die ID des zu aktualisierenden Buches
-     * als Pfad-Parameter enthalten sein. Außerdem muss im Rumpf das zu
-     * aktualisierende Buch als JSON-Datensatz enthalten sein. Damit die
-     * Aktualisierung überhaupt durchgeführt werden kann, muss im Header
-     * `If-Match` auf die korrekte Version für optimistische Synchronisation
-     * gesetzt sein.
-     *
-     * Bei erfolgreicher Aktualisierung wird der Statuscode `204` (`No Content`)
-     * gesetzt und im Header auch `ETag` mit der neuen Version mitgeliefert.
-     *
-     * Falls die Versionsnummer fehlt, wird der Statuscode `428` (`Precondition
-     * required`) gesetzt; und falls sie nicht korrekt ist, der Statuscode `412`
-     * (`Precondition failed`). Falls Constraints verletzt sind, wird der
-     * Statuscode `400` (`Bad Request`) gesetzt und genauso auch wenn der neue
-     * Titel oder die neue ISBN-Nummer bereits existieren.
-     *
-     * @param buchDTO Buchdaten im Body des Request-Objekts.
-     * @param id Pfad-Paramater für die ID.
-     * @param version Versionsnummer aus dem Header _If-Match_.
-     * @param res Leeres Response-Objekt von Express.
-     * @returns Leeres Promise-Objekt.
+     * @param hardwareDTO Hardware data in the body of the request object.
+     * @param id Path parameter for the ID.
+     * @param version Version number from the If-Match header.
+     * @param res Empty response object from Express.
+     * @returns Empty Promise object.
      */
     // eslint-disable-next-line max-params
     @Put(':id')
@@ -192,11 +153,11 @@ export class HardwareWriteController {
     }
 
     /**
-     * Ein Buch wird anhand seiner ID-gelöscht, die als Pfad-Parameter angegeben
-     * ist. Der zurückgelieferte Statuscode ist `204` (`No Content`).
+     * A hardware entry is deleted based on its ID, which is specified as a path parameter.
+     * The returned status code is `204` (`No Content`).
      *
-     * @param id Pfad-Paramater für die ID.
-     * @returns Leeres Promise-Objekt.
+     * @param id Path parameter for the ID.
+     * @returns Empty Promise object.
      */
     @Delete(':id')
     @Roles({ roles: ['admin'] })
@@ -236,7 +197,6 @@ export class HardwareWriteController {
             updated: new Date(),
         };
 
-        // Rueckwaertsverweis
         hardware.abbildungen?.forEach((abbildung) => {
             abbildung.hardware = hardware;
         });

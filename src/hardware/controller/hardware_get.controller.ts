@@ -1,17 +1,3 @@
-// Copyright (C) 2021 - present Juergen Zimmermann, Hochschule Karlsruhe
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Das Modul besteht aus der Controller-Klasse für Lesen an der REST-Schnittstelle.
@@ -84,39 +70,28 @@ export class HardwareQuery implements Suchkriterien {
 }
 
 /**
- * Die Controller-Klasse für die Verwaltung von Bücher.
+ * Controller-Klasse zum verwalten von Hardware.
  */
-// Decorator in TypeScript, zur Standardisierung in ES vorgeschlagen (stage 3)
-// https://devblogs.microsoft.com/typescript/announcing-typescript-5-0-beta/#decorators
-// https://github.com/tc39/proposal-decorators
 @Controller(paths.rest)
 @UseInterceptors(ResponseTimeInterceptor)
 @ApiTags('Hardware REST-API')
-// @ApiBearerAuth()
-// Klassen ab ES 2015
 export class HardwareGetController {
-    // readonly in TypeScript, vgl. C#
-    // private ab ES 2019
     readonly #service: HardwareReadService;
 
     readonly #logger = getLogger(HardwareGetController.name);
 
-    // Dependency Injection (DI) bzw. Constructor Injection
-    // constructor(private readonly service: hardwareReadService) {}
-    // https://github.com/tc39/proposal-type-annotations#omitted-typescript-specific-features-that-generate-code
     constructor(service: HardwareReadService) {
         this.#service = service;
     }
 
     /**
-     * Ein hardware wird asynchron anhand seiner ID als Pfadparameter gesucht.
+     * Search for hardware by its ID as a path parameter.
      * 
-     * @param id Pfad-Parameter `id`
-     * @param req Request-Objekt von Express mit Pfadparameter, Query-String,
-     *            Request-Header und Request-Body.
-     * @param version Versionsnummer im Request-Header bei `If-None-Match`
-     * @param res Leeres Response-Objekt von Express.
-     * @returns Leeres Promise-Objekt.
+     * @param id Path parameter `id`
+     * @param req Request object from Express.
+     * @param version Version number: If-None-Match in the request header.
+     * @param res Empty response object from Express.
+     * @returns Empty promise object.
      */
     // eslint-disable-next-line max-params
     @Get(':id')
@@ -124,7 +99,7 @@ export class HardwareGetController {
     @ApiOperation({ summary: 'Search by Hardware ID' })
     @ApiParam({
         name: 'id',
-        description: 'e.g., 123-123-123',
+        description: 'e.g., 696-969-696',
     })
     @ApiHeader({
         name: 'If-None-Match',
@@ -173,21 +148,13 @@ export class HardwareGetController {
     }
 
     /**
-     * Bücher werden mit Query-Parametern asynchron gesucht. Falls es mindestens
-     * ein solches hardware gibt, wird der Statuscode `200` (`OK`) gesetzt. Im Rumpf
-     * des Response ist das JSON-Array mit den gefundenen Büchern, die jeweils
-     * um Atom-Links für HATEOAS ergänzt sind.
-     *
-     * Falls es kein hardware zu den Suchkriterien gibt, wird der Statuscode `404`
-     * (`Not Found`) gesetzt.
-     *
-     * Falls es keine Query-Parameter gibt, werden alle Bücher ermittelt.
-     *
-     * @param query Query-Parameter von Express.
-     * @param req Request-Objekt von Express.
-     * @param res Leeres Response-Objekt von Express.
-     * @returns Leeres Promise-Objekt.
-     */
+    * Search for hardware using query parameters.
+    *
+    * @param query Query parameters from Express.
+    * @param req Request object from Express.
+    * @param res Empty response object from Express.
+    * @returns Empty promise object.
+    */
     @Get()
     @Public()
     @ApiOperation({ summary: 'Search with criteria' })

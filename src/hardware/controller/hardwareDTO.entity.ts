@@ -32,7 +32,9 @@ class DecimalMin implements ValidatorConstraintInterface {
     }
 }
 
-
+/**
+ * Entity-Klasse für Hardware als Data Transfer Object (DTO) für Schreibezugriff.
+ */
 export class HardwareDtoWithoutRefs {
 
     @Length(1, 100)

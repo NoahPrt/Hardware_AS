@@ -25,5 +25,5 @@ include:
   - path: ../postgres/compose.yml
   #- path: ../mysql/compose.yml
   - path: ../keycloak/compose.yml
-  - path: ../fakesmtp/compose.yml
+  #- path: ../fakesmtp/compose.yml
   #- path: ../prometheus-grafana/compose.yml

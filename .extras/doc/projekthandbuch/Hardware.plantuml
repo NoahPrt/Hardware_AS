@@ -1,0 +1,56 @@
+@startuml Entity
+
+package typeorm {
+  class "@Entity" as Entity
+  hide Entity circle
+  class "@Column" as Column
+  hide Column circle
+  class "@PrimaryColumn" as PrimaryColumn
+  hide PrimaryColumn circle
+  class "@OneToMany" as OneToMany
+  hide OneToMany circle
+  class "@JoinColumn" as JoinColumn
+  hide JoinColumn circle
+  class "@ManyToOne" as ManyToOne
+  hide ManyToOne circle
+  class "@CreateDateColumn" as CreateDateColumn
+  hide CreateDateColumn circle
+  class "@UpdateDateColumn" as UpdateDateColumn
+  hide UpdateDateColumn circle
+}
+
+package hardware.entity {
+  class "type HardwareType = 'GRAPHICS_CARD' | 'PROCESSOR'" as HardwareType
+  hide HardwareType circle
+
+  class Hardware <<entity>> <<@Entity>> {
+    @Column() @PrimaryColumn() readonly id: number
+    @Column() readonly version: number
+    @Column() readonly name: string
+    @Column() readonly manufacturer: string
+    @Column() readonly rating: number
+    @Column() readonly type: HardwareType
+    @Column() readonly price: number
+    @Column() readonly inStock: boolean
+    @Column() readonly tags?: string
+    @CreateDateColumn() readonly created: Date
+    @UpdateDateColumn() readonly updated: Date
+  }
+
+  class Abbildung <<entity>> <<@Entity>> {
+    @Column() @PrimaryColumn() readonly id: number
+    @Column() readonly beschriftung: string
+    @Column() readonly contentType?: string
+  }
+
+  Hardware *--> "*" Abbildung : @OneToMany() \nabbildungen
+
+  Hardware ..> Entity
+  Hardware .up.> HardwareType
+}
+
+hide empty members
+
+footer (c) Jürgen Zimmermann
+
+@enduml

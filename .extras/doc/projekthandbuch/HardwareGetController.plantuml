@@ -1,0 +1,74 @@
+@startuml Controller-Klasse
+
+interface Promise<T>
+
+package @nestjs/common {
+  class "@Controller" as Controller
+  hide Controller circle
+
+  class "@Get" as Get
+  hide Get circle
+
+  class "@Req" as Req
+  hide Req circle
+
+  class "@Res" as Res
+  hide Res circle
+
+  class "@Param" as Param
+  hide Param circle
+
+  class "@Query" as Query
+  hide Query circle
+
+  class "@UseInterceptors" as UseInterceptors
+  hide UseInterceptors circle
+}
+
+package express {
+  class Request
+  class Response
+
+  Response .[hidden].> Controller
+}
+
+package hardware {
+  package entity #FFFFFF {
+    class Hardware <<entity>>
+
+    Hardware .[hidden].> Promise
+    Hardware .[hidden].> Request
+  }
+
+  package service {
+    class HardwareReadService << control >>
+  }
+
+  package rest #DDDDDD {
+    HardwareQuery -up-|> Hardware
+
+    class HardwareGetController << control >> << @Controller() >> << @UseInterceptors() >> {
+      + @Get() async getId(@Param() id: number, @Req() req: Request, @Headers() version: string, @Res() res: Response): Promise<Response<Hardware | undefined>>
+      + @Get() async get(@Query() query: HardwareQuery, @Req() req: Request,  @Res() res: Response): Promise<Response<Hardware | undefined>>
+    }
+
+    HardwareGetController o--> "1" HardwareReadService : service
+
+    HardwareGetController ..> Controller
+    HardwareGetController ..> Request
+    HardwareGetController ..> Response
+    HardwareGetController ..> Promise
+    HardwareGetController .up.> Hardware
+    HardwareGetController .up.> HardwareQuery
+
+    HardwareReadService .[hidden].> Request
+    HardwareReadService .[hidden].> Promise
+    Response .right[hidden].> Controller
+  }
+}
+
+hide empty members
+
+footer (c) Juergen Zimmermann
+
+@enduml

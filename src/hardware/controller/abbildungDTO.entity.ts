@@ -2,7 +2,7 @@
  * Das Modul besteht aus der Entity-Klasse.
  * @packageDocumentation
  */
-
+//change to trigger superlinter
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
 import { ApiProperty } from '@nestjs/swagger';

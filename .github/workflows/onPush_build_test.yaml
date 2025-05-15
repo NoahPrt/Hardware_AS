@@ -2,12 +2,12 @@ name: GitHub Actions Demo
 run-name: Build, Test & build + push Image Workflow for HardwareAS 🚀
 on: [push]
 jobs:
-  build-and-test:
+  lint-build-and-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: 🛎️ Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3 
 
       - name: 🟢 Use Node.js
         uses: actions/setup-node@v3

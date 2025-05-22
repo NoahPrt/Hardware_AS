@@ -36,6 +36,7 @@ ARG NODE_VERSION=23.10.0
 # ---------------------------------------------------------------------------------------
 # S t a g e   d i s t
 # ---------------------------------------------------------------------------------------
+# checkov:skip=CKV_DOCKER_2 Reason: Healthcheck not required for this image
 FROM node:${NODE_VERSION}-bookworm-slim AS dist
 
 # ggf. Python fuer pg, better-sqlite3

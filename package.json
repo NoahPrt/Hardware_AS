@@ -144,6 +144,7 @@
     "depcheck": "1.4.7",
     "eslint": "9.22.0",
     "eslint-config-prettier": "10.1.1",
+    "eslint-formatter-checkstyle": "8.40.0",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jest": "28.11.0",
     "eslint-plugin-jest-formatting": "3.1.0",

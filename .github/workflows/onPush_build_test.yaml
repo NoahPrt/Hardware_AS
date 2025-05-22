@@ -1,5 +1,10 @@
 name: GitHub Actions Demo
 run-name: Build, Test & build + push Image Workflow for HardwareAS 🚀
+
+permissions:
+  contents: read
+  packages: write
+  
 on: [push]
 jobs:
   lint-build-and-test:

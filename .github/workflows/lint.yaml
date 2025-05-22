@@ -1,3 +1,4 @@
+---
 name: Lint
 
 on: # yamllint disable-line rule:truthy
@@ -5,7 +6,7 @@ on: # yamllint disable-line rule:truthy
     paths:
       - 'src/**' 
 
-permissions: {}
+permissions: { }
 
 jobs:
   build:

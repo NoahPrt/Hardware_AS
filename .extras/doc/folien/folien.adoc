@@ -2,26 +2,9 @@
 :revealjs_slideNumber: true
 :sectnums:
 
-// Copyright (C) 2020 - present Juergen Zimmermann, Hochschule Karlsruhe
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+= Hardware AS mit Nest, REST, GraphQL, TypeORM, JWT und Vitest
 
-// https://asciidoctor.org/docs/asciidoctor-revealjs
-
-= Beispiel mit Nest, REST, GraphQL, TypeORM, JWT und Jest
-
-Jürgen Zimmermann <Juergen.Zimmermann@h-ka.de>
+Noah Pirthauer <pino1011@h-ka.de>
 
 == Gliederung
 
@@ -124,4 +107,3 @@ Jürgen Zimmermann <Juergen.Zimmermann@h-ka.de>
 
 * Wrapper durch Nest
 * @Api...() einschl. `@ApiBearerAuth()`
-* Button _Try it out_
